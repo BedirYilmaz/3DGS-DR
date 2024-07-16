@@ -68,11 +68,13 @@ def loadCam(args, id, cam_info, resolution_scale):
                   image_name=cam_info.image_name, uid=id, 
                   data_device=args.data_device, HWK=HWK, gt_refl_mask=refl_msk)
 
-def cameraList_from_camInfos(cam_infos, resolution_scale, args):
+def cameraList_from_camInfos(cam_infos, resolution_scale, args, is_viewer=False):
     camera_list = []
 
     for id, c in enumerate(cam_infos):
         camera_list.append(loadCam(args, id, c, resolution_scale))
+        if is_viewer:
+            break
 
     return camera_list
 
